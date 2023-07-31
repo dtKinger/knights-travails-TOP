@@ -20,18 +20,18 @@ const knightMoves = {
   "WNN": {x: -1, y: -2},
 }
 
+function buildTree (legalMoves, ) {
 
+}
 
 // Determine Legal Knight Moves based on position
 function ohThePlacesYouCanGo(){
   let currentPosition = getPosition('WK1');
-  let x = currentPosition.x;
-  let y = currentPosition.y;
   let legalMoves = [];
   let combinations = (Object.values(knightMoves)) // combinations[0].x == 1
   combinations.forEach((combo) => {
-    let proposedX = x + combo.x
-    let proposedY = y + combo.y
+    let proposedX = currentPosition.x + combo.x
+    let proposedY = currentPosition.y + combo.y
     if (0 <= proposedX &&
         proposedX <= 7 &&
         0 <= proposedY &&
