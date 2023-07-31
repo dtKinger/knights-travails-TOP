@@ -3,60 +3,61 @@ let chessBoard = [
   ["", "", "", "", "", "", "", ""],
   ["", "", "", "", "", "", "", ""],
   ["", "", "", "", "", "", "", ""],
-  ["", "", "", "WK1", "", "", "", ""],
   ["", "", "", "", "", "", "", ""],
   ["", "", "", "", "", "", "", ""],
+  ["", "", "", "", "", "", "", "WK1"],
   ["", "", "", "", "", "", "", ""]
 ]
 
+// Print the board in console where WK1 = White Knight 1
+let renderBoard = (() => {
+  for (let row = 0; row < chessBoard.length; row += 1){
+    console.log(chessBoard[row])
+  }
+})();
+
 const knightMoves = {
-  "ENN": {x: 1, y: -2},
-  "EEN": {x: 2, y: -1},
-  "EES": {x: 2, y: 1},
-  "ESS": {x: 1, y: 2},
-  "WSS": {x: -1, y: 2},
-  "WWS": {x: -2, y: 1},
-  "WWN": {x: -2, y: -1},
-  "WNN": {x: -1, y: -2},
+  "ENN": {y: -2, x: 1},
+  "EEN": {y: -1, x: 2},
+  "EES": {y: 1, x: 2},
+  "ESS": {y: 2, x: 1},
+  "WSS": {y: 2, x: -1},
+  "WWS": {y: 1, x: -2},
+  "WWN": {y: -1, x: -2},
+  "WNN": {y: -2, x: -1},
 }
 
-function buildTree (legalMoves, ) {
+function buildTree () {
 
 }
 
 // Determine Legal Knight Moves based on position
-function ohThePlacesYouCanGo(){
-  let currentPosition = getPosition('WK1');
+function ohThePlacesYouCanGo(currentPosition){
   let legalMoves = [];
   let combinations = (Object.values(knightMoves)) // combinations[0].x == 1
   combinations.forEach((combo) => {
-    let proposedX = currentPosition.x + combo.x
     let proposedY = currentPosition.y + combo.y
-    if (0 <= proposedX &&
-        proposedX <= 7 &&
-        0 <= proposedY &&
-        proposedY <= 7)
+    let proposedX = currentPosition.x + combo.x
+    if (0 <= proposedY &&
+        proposedY <= 7 &&
+        0 <= proposedX &&
+        proposedX <= 7)
       {
       legalMoves.push([proposedX, proposedY])
     }
   })
+  console.info(legalMoves)
   return legalMoves
 }
-
-// Print the board in console where WK1 = White Knight 1
-let renderBoard = (() => {
-  for (let i = 0; i < chessBoard.length; i += 1){
-    console.log(chessBoard[i])
-  }
-})();
+ohThePlacesYouCanGo(getPosition('WK1'))
 
 // Find WK1
 function getPosition(token){
-  for (let i = 0; i < chessBoard.length; i += 1){
-    for (let j = 0; j < chessBoard[i].length; j += 1){
-      if (chessBoard[i][j] == token){
-        console.log(`${token}'s position is ${i}, ${j}.`)
-        return {"x": i, "y": j}
+  for (let row = 0; row < chessBoard.length; row += 1){
+    for (let col = 0; col < chessBoard[row].length; col += 1){
+      if (chessBoard[row][col] == token){
+        console.log(`${token}'s position is ${col}, ${row}.`)
+        return {"y": row, "x": col}
       }
     }
   }
