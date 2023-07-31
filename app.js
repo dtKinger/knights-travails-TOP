@@ -8,13 +8,47 @@ let chessBoard = [
   ["", "", "", "", "", "", "", ""],
   ["", "", "", "", "", "", "", ""]
 ]
-// WK1 = White Knight 1
-for (let i = 0; i < chessBoard.length; i += 1){
-  console.log(chessBoard[i])
+
+const knightMoves = {
+  "ENN": {x: 1, y: -2},
+  "EEN": {x: 2, y: -1},
+  "EES": {x: 2, y: 1},
+  "ESS": {x: 1, y: 2},
+  "WSS": {x: -1, y: 2},
+  "WWS": {x: -2, y: 1},
+  "WWN": {x: -2, y: -1},
+  "WNN": {x: -1, y: -2},
 }
 
-// Legal Knight Moves
 
+
+// Determine Legal Knight Moves based on position
+function ohThePlacesYouCanGo(){
+  let currentPosition = getPosition('WK1');
+  let x = currentPosition.x;
+  let y = currentPosition.y;
+  let legalMoves = [];
+  let combinations = (Object.values(knightMoves)) // combinations[0].x == 1
+  combinations.forEach((combo) => {
+    let proposedX = x + combo.x
+    let proposedY = y + combo.y
+    if (0 <= proposedX &&
+        proposedX <= 7 &&
+        0 <= proposedY &&
+        proposedY <= 7)
+      {
+      legalMoves.push([proposedX, proposedY])
+    }
+  })
+  return legalMoves
+}
+
+// Print the board in console where WK1 = White Knight 1
+let renderBoard = (() => {
+  for (let i = 0; i < chessBoard.length; i += 1){
+    console.log(chessBoard[i])
+  }
+})();
 
 // Find WK1
 function getPosition(token){
