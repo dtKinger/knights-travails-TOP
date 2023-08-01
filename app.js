@@ -1,3 +1,5 @@
+// import { Tree, Node, id } from './Tree.js';
+
 let chessBoard = [
   ["", "", "", "", "", "", "", ""],
   ["", "", "", "", "", "", "", ""],
@@ -16,49 +18,63 @@ let renderBoard = (() => {
   }
 })();
 
-const knightMoves = {
-  "ENN": {y: -2, x: 1},
-  "EEN": {y: -1, x: 2},
-  "EES": {y: 1, x: 2},
-  "ESS": {y: 2, x: 1},
-  "WSS": {y: 2, x: -1},
-  "WWS": {y: 1, x: -2},
-  "WWN": {y: -1, x: -2},
-  "WNN": {y: -2, x: -1},
+class Node {
+  constructor(row, col, distance){
+    this.row = row // when processing a node, capture it's ID, assign that to anything enqueue'd by it
+    this.col = col
+    this.distance = distance
+  }
+
+  getPositionString () {
+    return `${this.row}, ${this.col}`
+  }
 }
 
-function buildTree () {
+const knightMoves = [[1, -2], [2, -1], [2, 1], [1, 2], [-1, 2], [-2, 1], [-2, -1], [-1, -2]]
 
-}
+const getLegalMoves = (row, col) => {
+  const legalMoves = [];
 
-// Determine Legal Knight Moves based on position
-function ohThePlacesYouCanGo(currentPosition){
-  let legalMoves = [];
-  let combinations = (Object.values(knightMoves)) // combinations[0].x == 1
-  combinations.forEach((combo) => {
-    let proposedY = currentPosition.y + combo.y
-    let proposedX = currentPosition.x + combo.x
-    if (0 <= proposedY &&
-        proposedY <= 7 &&
-        0 <= proposedX &&
-        proposedX <= 7)
+  for (const knightMove of knightMoves){
+    const [rowChange, colChange] = knightMove;
+
+    const newRow = row + rowChange;
+    const newCol = col + colChange;
+    if (newRow >= 0 && newRow <= 7
+      && newCol >= 0 && newCol <= 7)
       {
-      legalMoves.push([proposedX, proposedY])
-    }
-  })
-  console.info(legalMoves)
-  return legalMoves
-}
-ohThePlacesYouCanGo(getPosition('WK1'))
-
-// Find WK1
-function getPosition(token){
-  for (let row = 0; row < chessBoard.length; row += 1){
-    for (let col = 0; col < chessBoard[row].length; col += 1){
-      if (chessBoard[row][col] == token){
-        console.log(`${token}'s position is ${col}, ${row}.`)
-        return {"y": row, "x": col}
+        legalMoves.push([newRow, newCol]);
       }
     }
+  return legalMoves;
+}
+
+function knightsTravails (targetRow, targetCol, distance) {
+  const queue = [];
+  const startNode = new Node (7, 6, 0)
+
+  queue.push(startNode);
+
+  const visited = new Set();
+
+  while (queue.length > 0){
+    // Remove node
+    const node = queue.shift()
+    const { row, col, distance } = node;
+    // Process
+    if (row === targetRow && col === targetCol) return distance;
+    else visited.add(node.getPositionString())
+
+    // Add next-move nodes
+    for (const legalMove of getLegalMoves(row, col)){
+      const [newRow, newCol] = legalMove;
+      const newNode = new Node(newRow, newCol, distance + 1)
+
+      if (visited.has(newNode.getPositionString())) continue;
+      queue.push(newNode)
+  
+    }
+
   }
+  console.log('hello')
 }
