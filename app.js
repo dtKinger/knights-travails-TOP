@@ -2,12 +2,12 @@
 
 let chessBoard = [
   ["", "", "", "", "", "", "", ""],
+  ["", "", "", "", "WK1", "", "", ""],
   ["", "", "", "", "", "", "", ""],
   ["", "", "", "", "", "", "", ""],
   ["", "", "", "", "", "", "", ""],
   ["", "", "", "", "", "", "", ""],
   ["", "", "", "", "", "", "", ""],
-  ["", "", "", "", "", "", "", "WK1"],
   ["", "", "", "", "", "", "", ""]
 ]
 
@@ -45,13 +45,15 @@ const getLegalMoves = (row, col) => {
       {
         legalMoves.push([newRow, newCol]);
       }
+    else console.log('Illegal Moves ignored')
     }
   return legalMoves;
 }
 
 function knightsTravails (targetRow, targetCol, distance) {
   const queue = [];
-  const startNode = new Node (7, 6, 0)
+  let startingPoint = getStartingPoint('WK1')
+  const startNode = new Node (startingPoint[0], startingPoint[1], 0);
 
   queue.push(startNode);
 
@@ -76,5 +78,17 @@ function knightsTravails (targetRow, targetCol, distance) {
     }
 
   }
-  console.log('hello')
+}
+
+// Find WK1
+function getStartingPoint(token){
+  for (let row = 0; row < chessBoard.length; row += 1){
+    for (let col = 0; col < chessBoard[row].length; col += 1){
+      if (chessBoard[row][col] == token){
+        console.log(`${token}'s position is ${col}, ${row}.`)
+        let startingPoint = [row, col, 0]
+        return startingPoint;
+      }
+    }
+  }
 }
