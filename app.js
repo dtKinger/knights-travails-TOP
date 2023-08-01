@@ -69,11 +69,18 @@ function knightsTravails (targetRow, targetCol, distance) {
     // Process
     if (row === targetRow && col === targetCol){  
       let path = rebuildPath(node);
-      console.log(`The Knight Travails thusly: `)
-      console.log(`${[startingPoint[0], startingPoint[1]]}`)
-      path.forEach((square,index) => {
+      if (distance > 0){
+        console.log(`The Knight Travailed thusly in ${distance} moves! `)
+        console.log(`${[startingPoint[0], startingPoint[1]]}`)
+        path.forEach((square,index) => {
         console.log(`${path[index]}`)
-      })
+        })
+      } else if (distance <= 0){
+        console.log(`It looks like the Knight didn't have to move at all!
+        Select a different start or end point.`)
+        return;
+      }
+      
       return path;
     }
     
