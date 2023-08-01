@@ -23,7 +23,7 @@ class Node {
     this.distance = distance
     this.parent = parent
   }
-
+  
   getPositionString () {
     return `${this.row}, ${this.col}`
   }
@@ -48,10 +48,6 @@ const getLegalMoves = (row, col) => {
     }
   return legalMoves;
 }
-// As a node is entering the queue - add it's parents.
-// Is there an earlier point I can do this? I think while visiting the parent.
-// when the newNode is initialized.
-
 
 function knightsTravails (targetRow, targetCol, distance) {
   const queue = [];
@@ -71,7 +67,7 @@ function knightsTravails (targetRow, targetCol, distance) {
       let path = rebuildPath(node);
       if (distance > 0){
         console.log(`The Knight Travailed thusly in ${distance} moves! `)
-        console.log(`${[startingPoint[0], startingPoint[1]]}`)
+        console.log(`${[startingPoint[0], startingPoint[1]]} - start`)
         path.forEach((square,index) => {
         console.log(`${path[index]}`)
         })
@@ -80,7 +76,6 @@ function knightsTravails (targetRow, targetCol, distance) {
         Select a different start or end point.`)
         return;
       }
-      
       return path;
     }
     
@@ -93,9 +88,7 @@ function knightsTravails (targetRow, targetCol, distance) {
 
       if (visited.has(newNode.getPositionString())) continue;
       queue.push(newNode)
-  
     }
-
   }
 }
 
