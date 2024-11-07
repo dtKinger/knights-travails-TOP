@@ -10,11 +10,28 @@ let chessBoard = [
 ]
 
 // Print the board in console where WK1 = White Knight 1
-let renderBoard = (() => {
+function renderBoard () {
   for (let row = 0; row < chessBoard.length; row += 1){
     console.log(chessBoard[row])
   }
-})();
+}
+renderBoard();
+
+function setKnightPosition (y, x) {
+  // clear the board
+  chessBoard = [
+    ["", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", ""]
+  ]
+  chessBoard[y][x] = 'WK1';
+  renderBoard();
+}
 
 class Node {
   constructor(row, col, distance, parent){
@@ -49,7 +66,7 @@ const getLegalMoves = (row, col) => {
   return legalMoves;
 }
 
-function knightsTravails (targetRow, targetCol, distance) {
+function knightsTravails (targetRow, targetCol) {
   const queue = [];
   let startingPoint = getStartingPoint('WK1')
   const startNode = new Node (startingPoint[0], startingPoint[1], 0);
@@ -107,9 +124,29 @@ function getStartingPoint(token){
     for (let col = 0; col < chessBoard[row].length; col += 1){
       if (chessBoard[row][col] == token){
         console.log(`${token}'s position is ${row}, ${col}.`)
-        let startingPoint = [row, col, 0]
+        let startingPoint = [row, col]
         return startingPoint;
       }
     }
   }
+}
+
+const clipboardButtons = document.querySelectorAll('.copy-to-clip')
+
+clipboardButtons.forEach((button) => {
+  button.addEventListener('click', (e) => {
+    e.preventDefault();
+    const content = button.parentNode.querySelector('.code').textContent.toString();
+    navigator.clipboard.writeText(content);
+    showCopiedFeedbackFlag(button);
+  })
+})
+
+
+function showCopiedFeedbackFlag (button) {
+  const feedbackFlag = button.parentNode.querySelector('.copy-feedback')
+  feedbackFlag.classList.toggle('opacity-0');
+  setTimeout(() => {
+    feedbackFlag.classList.toggle('opacity-0');
+  }, 2000)
 }

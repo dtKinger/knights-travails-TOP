@@ -1,0 +1,42 @@
+.block {
+  background-color: black;
+  color: white;
+  width: clamp(200px, 500px, 800px);
+  padding: 6px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.code {
+  background-color: #393939;
+}
+
+.reference {
+  margin-top: 40px;
+}
+
+.function-header { 
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.copy-to-clip:hover {
+  cursor: pointer;
+}
+
+.copy-feedback {
+  position: absolute;
+  top: -30px;
+  right: -14px;
+  background: black;
+  color: white;
+  padding: 6px;
+  border-radius: 5px 5px 30% 30%;
+  transition: ease-in-out 1s;
+}
+
+.opacity-0 {
+  opacity: 0;
+}

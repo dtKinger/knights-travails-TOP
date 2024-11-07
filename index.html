@@ -10,13 +10,57 @@
 </head>
 <body>
   <header>
-    <h1>title</h1>
+    <h1>Knight's Travails</h1>
   </header>
   <main>
-    <h2>Page Title</h2>
+    <h2>Open dev tools to run functions</h2>
+    The White Knight (WK1) starts in position [1,4].
+
+    <h3 class="reference">API Reference</h3>
+
+    <div class="block">
+      <div class="function-header">
+        <code class="code">getStartingPoint('WK1')</code>
+        <span class="copy-feedback opacity-0">Copied!</span>
+        <span class="copy-to-clip">copy</span>
+      </div>
+      <hr>
+      <p>Find the location of WK1 on the chessboard.</p>
+    </div>
+
+    <div class="block">
+      <div class="function-header">
+        <code class="code">setKnightPosition (y, x)</code>
+        <span class="copy-feedback opacity-0">Copied!</span>
+        <span class="copy-to-clip">copy</span>
+      </div>
+      <hr>
+      <p>Move the WK1 to a new starting point.</p>
+    </div>
+
+    <div class="block">
+      <div class="function-header">
+        <code class="code">getLegalMoves(targetRow, targetCol)</code>
+        <span class="copy-feedback opacity-0">Copied!</span>
+        <span class="copy-to-clip">copy</span>
+      </div>
+      <hr>
+      <p>Punch in a pair of coordinates, return an array of legal destinations for the next move.</p>
+    </div>
+
+    <div class="block">
+      <div class="function-header">
+        <code class="code">knightsTravails(targetRow, targetCol)</code>
+        <span class="copy-feedback opacity-0">Copied!</span>
+        <span class="copy-to-clip">copy</span>
+      </div>
+      <hr>
+      <p>Give coordinates from [0,0] to [7,7] as [targetRow, targetCol]. App will calculate the minimum number of moves to arrive there.</p>
+    </div>
+    
   </main>
   <footer>
-    <p>&copy;</p>
+    <p>&copy; <a href="https://danielking.ca">danielking.ca</a> <span class="current-year"></span></p>
   </footer>
   <script src="app.js"></script>
 </body>
