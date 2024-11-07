@@ -6,18 +6,23 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="favicon.png">
-  <title>title</title>
+  <title>Knight's Travails by DK</title>
 </head>
 <body>
   <header>
     <h1>Knight's Travails</h1>
   </header>
   <main>
-    <h2>Open dev tools to run functions</h2>
-    The White Knight (WK1) starts in position [1,4].
+    <h2 class="info-box">This app runs in the developer console.</h2>
+    <p>1. To open the dev console:</p>
+    <p class="indent-1">Mac users: <kbd>command</kbd> + <kbd>option</kbd> + <kbd>J</kbd>
+    <br>PC users: <kbd>control</kbd> + <kbd>alt</kbd> + <kbd>J</kbd>
+    </p>
+  
+    <p>2. Copy + Paste the functions from the <a href="#reference">API Reference</a> and replace the parameters with values between <code class="code">0</code> and <code class="code">7</code>.</p>
 
-    <h3 class="reference">API Reference</h3>
-
+    <h3 class="reference" id="reference">API Reference</h3>
+    <p>Manipulate the position and test the moves of WK1 (White Knight 1) on the chessboard. </p>
     <div class="block">
       <div class="function-header">
         <code class="code">getStartingPoint('WK1')</code>
@@ -25,7 +30,7 @@
         <span class="copy-to-clip">copy</span>
       </div>
       <hr>
-      <p>Find the location of WK1 on the chessboard.</p>
+      <p>The starting position rhymes with "fun, door".</p>
     </div>
 
     <div class="block">
@@ -35,12 +40,12 @@
         <span class="copy-to-clip">copy</span>
       </div>
       <hr>
-      <p>Move the WK1 to a new starting point.</p>
+      <p>Move the WK1 to new starting coordinates.</p>
     </div>
 
     <div class="block">
       <div class="function-header">
-        <code class="code">getLegalMoves(targetRow, targetCol)</code>
+        <code class="code">getLegalMoves(y, x)</code>
         <span class="copy-feedback opacity-0">Copied!</span>
         <span class="copy-to-clip">copy</span>
       </div>
@@ -50,12 +55,12 @@
 
     <div class="block">
       <div class="function-header">
-        <code class="code">knightsTravails(targetRow, targetCol)</code>
+        <code class="code">knightsTravails(y, x)</code>
         <span class="copy-feedback opacity-0">Copied!</span>
         <span class="copy-to-clip">copy</span>
       </div>
       <hr>
-      <p>Give coordinates from [0,0] to [7,7] as [targetRow, targetCol]. App will calculate the minimum number of moves to arrive there.</p>
+      <p>Give coordinates from [0,0] to [7,7] as [y, x]. App will calculate the minimum number of moves to arrive there.</p>
     </div>
     
   </main>

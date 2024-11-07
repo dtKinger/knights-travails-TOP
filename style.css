@@ -1,7 +1,23 @@
+* {
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+main {
+  max-width: 800px;
+}
+
+main > p {
+  max-width: 600px;
+  padding: 10px;
+  overflow: wrap;
+  word-break:normal;
+}
+
 .block {
   background-color: black;
   color: white;
-  width: clamp(200px, 500px, 800px);
+  width: 600px;
   padding: 6px;
   border: 1px solid black;
   border-radius: 5px;
@@ -10,6 +26,7 @@
 
 .code {
   background-color: #393939;
+  color: white;
 }
 
 .reference {
@@ -30,7 +47,7 @@
   position: absolute;
   top: -30px;
   right: -14px;
-  background: black;
+  background: rgb(80, 80, 80);
   color: white;
   padding: 6px;
   border-radius: 5px 5px 30% 30%;
@@ -39,4 +56,23 @@
 
 .opacity-0 {
   opacity: 0;
+}
+
+kbd {
+  background-color: rgb(208, 232, 252);
+  padding: 3px;
+  border-radius: 3px;
+}
+
+.indent-1 {
+  padding-left: 1.25em;
+}
+
+.info-box {
+  max-width: 600px;
+  text-align: center;
+  border: 3px solid rgb(0, 255, 255);
+  border-radius: 20px;
+  padding: 20px;
+  font-size: 1.25em;
 }
